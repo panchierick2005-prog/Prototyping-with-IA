@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erick Panchi | Portafolio Digital - Ingeniería en Sistemas</title>
+    <!-- SEO & Accessibility -->
+    <meta name="description" content="Portafolio digital de Erick Steeven Panchi Barrezueta - Estudiante de Ingeniería en Sistemas de la Información en la Escuela Politécnica Nacional (EPN).">
+    <meta name="author" content="Erick Steeven Panchi Barrezueta">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           VARIABLES & DESIGN SYSTEM (Nielsen 4: Consistencia y Estándares)
+           Colores primarios: Blanco, Azul, Verde, Negro
+           ========================================================================== */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F1F5F9;
+            --text-primary: #0F172A; /* Alto contraste */
+            --text-secondary: #334155;
+            --text-muted: #64748B;
+            
+            --brand-blue: #1D4ED8;
+            --brand-blue-hover: #1E40AF;
+            --brand-blue-light: #EFF6FF;
+            --brand-green: #059669;
+            --brand-green-hover: #047857;
+            --brand-green-light: #ECFDF5;
+            --brand-black: #090D16;
+            
+            --border-color: #E2E8F0;
+            --border-hover: #CBD5E1;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --badge-bg: #E0E7FF;
+            --badge-text: #1E40AF;
+            --progress-bar: linear-gradient(90deg, #1D4ED8, #059669);
+            
+            --focus-ring: 0 0 0 3px rgba(29, 78, 216, 0.4);
+            --transition-speed: 0.25s;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-primary: #090D16;
+            --bg-secondary: #0F172A;
+            --bg-card: #1E293B;
+            --bg-card-hover: #334155;
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            
+            --brand-blue: #3B82F6;
+            --brand-blue-hover: #60A5FA;
+            --brand-blue-light: rgba(59, 130, 246, 0.15);
+            --brand-green: #10B981;
+            --brand-green-hover: #34D399;
+            --brand-green-light: rgba(16, 185, 129, 0.15);
+            --brand-black: #000000;
+            
+            --border-color: #334155;
+            --border-hover: #475569;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+            --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.6);
+            
+            --nav-bg: rgba(9, 13, 22, 0.9);
+            --badge-bg: rgba(59, 130, 246, 0.2);
+            --badge-text: #93C5FD;
+            --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Global Reset & Basic Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        /* Nielsen 1: Progress Indicator (Visibilidad del Estado) */
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+        #progress-bar {
+            height: 100%;
+            background: var(--progress-bar);
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Header & Sticky Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 900;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        .nav-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span.highlight {
+            color: var(--brand-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--brand-blue);
+            background-color: var(--brand-blue-light);
+        }
+
+        /* Theme Toggle & Controls (Nielsen 3 & 7: Control del usuario y Flexibilidad) */
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-btn, .heuristics-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .theme-btn:hover, .heuristics-btn:hover {
+            border-color: var(--brand-blue);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-btn:focus-visible, .heuristics-btn:focus-visible, a:focus-visible, button:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Layout & Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 4.5rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-tag {
+            background: var(--brand-blue-light);
+            color: var(--brand-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 3.5rem;
+            align-items: center;
+            padding: 2rem 0 3.5rem 0;
+        }
+
+        .hero-text h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--brand-blue);
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 680px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--bg-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--brand-blue);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(29, 78, 216, 0.35);
+        }
+
+        .btn-green {
+            background: var(--brand-green);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+        }
+
+        .btn-green:hover {
+            background: var(--brand-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-hover);
+        }
+
+        /* Hero Image Container */
+        .hero-img-wrapper {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-img-card {
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+            padding: 8px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-img-card:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-img {
+            width: 280px;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 18px;
+            display: block;
+            background-color: var(--bg-secondary);
+        }
+
+        .badge-epn {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Grid Layouts for Experience & Education */
+        .timeline-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.25s ease;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card:hover {
+            border-color: var(--brand-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card-subtitle {
+            color: var(--brand-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-date {
+            background: var(--brand-blue-light);
+            color: var(--brand-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-body ul {
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .card-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-filter {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--brand-blue);
+            color: #FFFFFF;
+            border-color: var(--brand-blue);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--brand-green);
+            background: var(--bg-card-hover);
+        }
+
+        .skill-icon {
+            background: var(--brand-green-light);
+            color: var(--brand-green);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .skill-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .skill-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Language Badge Card */
+        .lang-card {
+            background: linear-gradient(135deg, var(--brand-blue-light), var(--brand-green-light));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        /* Contact & Form (Nielsen 5 & 9: Prevención y manejo de errores) */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            background: var(--brand-blue-light);
+            color: var(--brand-blue);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-blue);
+            box-shadow: var(--focus-ring);
+            background: var(--bg-card);
+        }
+
+        .error-message {
+            color: #EF4444;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-status {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-status.success {
+            background: var(--brand-green-light);
+            color: var(--brand-green);
+            border: 1px solid var(--brand-green);
+        }
+
+        /* Floating WhatsApp Button (Req: Botón flotante inferior derecha) */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25D366;
+            color: #FFFFFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: var(--brand-black);
+            color: #FFFFFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        /* Nielsen Heuristics Modal (Nielsen 10: Ayuda y documentación) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 750px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .heuristic-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 4px solid var(--brand-blue);
+        }
+
+        .heuristic-item h5 {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .heuristic-item p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text .subtitle {
+                justify-content: center;
+            }
+            .hero-meta {
+                justify-content: center;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--shadow-md);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nielsen 1: Indicator of Progress -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Sticky Navigation Header -->
+    <header>
+        <div class="nav-wrapper">
+            <a href="#inicio" class="logo" aria-label="Inicio Erick Panchi">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--brand-blue)"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>Erick <span class="highlight">Panchi</span></span>
+            </a>
+
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Abrir menú de navegación">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#perfil">Perfil</a></li>
+                    <li><a href="#educacion">Educación</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="controls-group">
+                <!-- Nielsen 10: Direct Help Access -->
+                <button class="heuristics-btn" id="open-heuristics-btn" aria-label="Ver cumplimiento Heurísticas de Nielsen">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <span>10 Nielsen</span>
+                </button>
+
+                <!-- Nielsen 3: Light/Dark Theme Switch -->
+                <button class="theme-btn" id="theme-toggle-btn" aria-label="Cambiar modo claro u oscuro">
+                    <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <span id="theme-text">Modo Oscuro</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- HERO SECTION -->
+        <section id="inicio" class="hero">
+            <div class="hero-text">
+                <div class="subtitle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    Ingeniería en Sistemas de la Información
+                </div>
+                <h1>Erick Steeven<br><span style="color:var(--brand-blue);">Panchi Barrezueta</span></h1>
+                <p>
+                    Estudiante de 5.º semestre en la <strong>Escuela Politécnica Nacional (EPN)</strong>. Apasionado por la optimización de procesos mediante Inteligencia Artificial generativa, análisis de datos en Power BI y desarrollo de software con Java y Python.
+                </p>
+
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        Sangolquí / Quito, Ecuador
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        (+593) 99 730 9788
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        panchierick2005@gmail.com
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="https://wa.me/593997309788?text=Hola%20Erick,%20vi%20tu%20portafolio%20digital%20y%20me%20gustaría%20contactarte." target="_blank" rel="noopener noreferrer" class="btn btn-green">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.333 5.001l-1.416 5.165 5.285-1.385c1.464.798 3.118 1.218 4.784 1.219h.004c5.504 0 9.986-4.478 9.987-9.985 0-2.668-1.039-5.176-2.926-7.062a9.923 9.923 0 0 0-7.051-2.937zm5.83 14.288c-.247.692-1.433 1.325-1.986 1.385-.512.056-1.18.08-1.905-.152-1.464-.469-3.324-1.638-4.685-2.999-1.36-1.36-2.529-3.221-2.999-4.685-.232-.725-.208-1.393-.152-1.905.06-.553.693-1.739 1.385-1.986.233-.083.479-.083.693 0 .167.064.39.261.536.52.208.369.709 1.728.769 1.852.06.124.1.269.02.433-.08.164-.124.269-.247.412-.124.143-.261.319-.372.43-.124.124-.254.26-.11.507.143.247.637 1.052 1.368 1.702.939.835 1.731 1.094 1.978 1.218.247.124.39.103.536-.06.143-.164.617-.723.781-.97.164-.247.329-.208.553-.124.224.083 1.423.671 1.67 794.247.124.412.185.494.212.822.027c.329.083 1.515-.55 1.762-1.242z"/></svg>
+                        Contactar por WhatsApp
+                    </a>
+                    <a href="#contacto" class="btn btn-primary">
+                        Enviar Mensaje
+                    </a>
+                    <button id="copy-email-btn" class="btn btn-outline" title="Copiar correo al portapapeles">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copiar Email
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Photo Container -->
+            <div class="hero-img-wrapper">
+                <div class="hero-img-card">
+                    <img src="data:image/jpg;base64,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" alt="Fotografía de Erick Steeven Panchi Barrezueta" class="hero-img">
+                </div>
+                <div class="badge-epn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Estudiante EPN - 5.º Semestre
+                </div>
+            </div>
+        </section>
+
+        <!-- PERFIL PROFESIONAL -->
+        <section id="perfil">
+            <div class="section-header">
+                <span class="section-tag">01. Sobre Mí</span>
+                <h2 class="section-title">Perfil Profesional</h2>
+            </div>
+            <div class="card">
+                <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8;">
+                    Estudiante de 5.º semestre de <strong>Ingeniería en Sistemas de la Información</strong> en la <strong>Escuela Politécnica Nacional (EPN)</strong>, enfocado en la aplicación práctica de herramientas tecnológicas y el desarrollo profesional continuo.
+                </p>
+                <div style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); display: grid; gap: 1.25rem; margin-top: 1.5rem;">
+                    <div style="background:var(--bg-secondary); padding:1rem; border-radius:10px; border:1px solid var(--border-color);">
+                        <strong style="color:var(--brand-blue); display:block; margin-bottom:0.3rem;">🚀 Capacidad de Aprendizaje</strong>
+                        <span style="font-size:0.9rem; color:var(--text-muted);">Rápida adaptabilidad y compromiso con la excelencia tecnológica.</span>
+                    </div>
+                    <div style="background:var(--bg-secondary); padding:1rem; border-radius:10px; border:1px solid var(--border-color);">
+                        <strong style="color:var(--brand-green); display:block; margin-bottom:0.3rem;">💡 Enfoque en IA & Datos</strong>
+                        <span style="font-size:0.9rem; color:var(--text-muted);">Interés en aplicar IA generativa y análisis de datos para optimizar procesos.</span>
+                    </div>
+                    <div style="background:var(--bg-secondary); padding:1rem; border-radius:10px; border:1px solid var(--border-color);">
+                        <strong style="color:var(--brand-blue); display:block; margin-bottom:0.3rem;">🤝 Habilidades Interpersonales</strong>
+                        <span style="font-size:0.9rem; color:var(--text-muted);">Atención al cliente consolidada, comunicación asertiva y trabajo en equipo.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCACIÓN -->
+        <section id="educacion">
+            <div class="section-header">
+                <span class="section-tag">02. Formación</span>
+                <h2 class="section-title">Educación</h2>
+            </div>
+            <div class="timeline-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Ingeniería en Sistemas de la Información</div>
+                            <div class="card-subtitle">Escuela Politécnica Nacional (EPN)</div>
+                        </div>
+                        <span class="card-date">5.º Semestre en Curso</span>
+                    </div>
+                    <div class="card-body">
+                        <p style="color:var(--text-secondary); font-size:0.95rem;">
+                            Ubicación: Quito / Sangolquí, Ecuador.<br>
+                            Formación integral en desarrollo de software, arquitectura de sistemas, gestión de bases de datos, algoritmos y tecnologías emergentes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Bachillerato en Ciencias</div>
+                            <div class="card-subtitle">Unidad Educativa Carlos Larco Hidalgo</div>
+                        </div>
+                        <span class="card-date">Graduado en 2023</span>
+                    </div>
+                    <div class="card-body">
+                        <p style="color:var(--text-secondary); font-size:0.95rem;">
+                            Bases sólidas en ciencias exactas, razonamiento lógico, investigación y resolución analítica de problemas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCIA PRÁCTICA -->
+        <section id="experiencia">
+            <div class="section-header">
+                <span class="section-tag">03. Trayectoria</span>
+                <h2 class="section-title">Experiencia Práctica y Atención al Cliente</h2>
+            </div>
+            <div class="timeline-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Auxiliar de Atención al Cliente y Servicio</div>
+                            <div class="card-subtitle">Local de Alimentos y Bebidas</div>
+                        </div>
+                        <span class="card-date" style="background:var(--brand-green-light); color:var(--brand-green);">Experiencia Práctica</span>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Atención directa al público y gestión eficiente de pedidos, garantizando un servicio ágil, cordial y de alta calidad.</li>
+                            <li>Trabajo colaborativo bajo presión en momentos de alta afluencia de clientes, manteniendo la calma y la precisión.</li>
+                            <li>Manejo de caja básica y comunicación asertiva para la resolución efectiva de requerimientos y novedades.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Auxiliar de Tienda y Ventas</div>
+                            <div class="card-subtitle">Local de Mascotas</div>
+                        </div>
+                        <span class="card-date" style="background:var(--brand-green-light); color:var(--brand-green);">Experiencia Práctica</span>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Asesoramiento personalizado a clientes sobre productos, cuidado integral y requerimientos específicos para mascotas.</li>
+                            <li>Apoyo en la organización del establecimiento, exhibición estratégica de productos y control visual eficiente de inventario.</li>
+                            <li>Mantenimiento de relaciones cordiales, empáticas y orientadas a la fidelización continua del cliente.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HABILIDADES & COMPETENCIAS -->
+        <section id="habilidades">
+            <div class="section-header">
+                <span class="section-tag">04. Aptitudes</span>
+                <h2 class="section-title">Competencias y Habilidades</h2>
+            </div>
+
+            <!-- Filter Buttons (Nielsen 7: Flexibilidad) -->
+            <div class="skills-filter">
+                <button class="filter-btn active" onclick="filterSkills('all', this)">Todas</button>
+                <button class="filter-btn" onclick="filterSkills('tech', this)">Técnicas (Hard Skills)</button>
+                <button class="filter-btn" onclick="filterSkills('soft', this)">Blandas (Soft Skills)</button>
+            </div>
+
+            <div class="skills-grid" id="skills-grid">
+
+                <!-- Tech Skills -->
+                <div class="skill-card" data-category="tech">
+                    <div class="skill-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12a10 10 0 0 1 9.9-10v10z"></path></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Inteligencia Artificial</h4>
+                        <p>Uso práctico de herramientas de IA generativa para optimización de tareas y productividad académica/profesional.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tech">
+                    <div class="skill-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Análisis de Datos</h4>
+                        <p>Creación de reportes dinámicos, dashboards y visualización estructurada de datos con <strong>Power BI</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tech">
+                    <div class="skill-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Programación Java & Python</h4>
+                        <p>Fundamentos sólidos, POO y desarrollo inicial de aplicaciones estructuradas en Java y Python.</p>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-card" data-category="soft">
+                    <div class="skill-icon" style="background:var(--brand-blue-light); color:var(--brand-blue);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Trabajo en Equipo</h4>
+                        <p>Colaboración proactiva, resolución consensuada de problemas y comunicación asertiva en entornos dinámicos.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="soft">
+                    <div class="skill-icon" style="background:var(--brand-blue-light); color:var(--brand-blue);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Adaptabilidad & Aprendizaje</h4>
+                        <p>Rápida curva de aprendizaje para la asimilación de nuevas tecnologías, marcos de trabajo y herramientas.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="soft">
+                    <div class="skill-icon" style="background:var(--brand-blue-light); color:var(--brand-blue);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Orientación al Cliente</h4>
+                        <p>Servicio empático, atención de requerimientos y enfoque en la satisfacción del usuario/cliente final.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="soft">
+                    <div class="skill-icon" style="background:var(--brand-blue-light); color:var(--brand-blue);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <div class="skill-info">
+                        <h4>Responsabilidad & Ética</h4>
+                        <p>Puntualidad, compromiso deontológico profesional y alta ética de trabajo en cada asignación.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Idiomas Card -->
+            <div class="lang-card">
+                <div>
+                    <span style="font-size:0.8rem; font-weight:700; color:var(--brand-blue); text-transform:uppercase;">Idiomas</span>
+                    <h3 style="font-size:1.25rem; font-weight:800; margin-top:0.2rem;">Inglés - Nivel Intermedio (B1)</h3>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">Habilidad sólida en lectura, escritura y comunicación técnica básica orientada a la ingeniería de software.</p>
+                </div>
+                <div style="background:var(--bg-card); padding:0.5rem 1rem; border-radius:10px; font-weight:800; color:var(--brand-green); border:1px solid var(--border-color);">
+                    B1 CEFR
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto">
+            <div class="section-header">
+                <span class="section-tag">05. Conectar</span>
+                <h2 class="section-title">Contacto Directo</h2>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info-card">
+                    <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:1rem;">¡Hablemos de nuevos proyectos!</h3>
+                    <p style="color:var(--text-secondary); margin-bottom:1.75rem;">
+                        Estoy disponible para oportunidades académicas, pasantías y colaboraciones en desarrollo de software o ciencia de datos.
+                    </p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">TELÉFONO</div>
+                            <div style="font-weight:700; color:var(--text-primary);">(+593) 99 730 9788</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">CORREO ELECTRÓNICO</div>
+                            <div style="font-weight:700; color:var(--text-primary);">panchierick2005@gmail.com</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">UBICACIÓN</div>
+                            <div style="font-weight:700; color:var(--text-primary);">Sangolquí / Quito, Ecuador</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form (Nielsen 5: Prevención de errores) -->
+                <div class="contact-info-card">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Ej. Ana Martínez" required>
+                            <div class="error-message" id="name-error">Por favor ingrese su nombre.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" required>
+                            <div class="error-message" id="email-error">Ingrese un correo electrónico válido.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Escriba su mensaje aquí..." required></textarea>
+                            <div class="error-message" id="message-error">El mensaje no puede estar vacío.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            Enviar Mensaje
+                        </button>
+
+                        <div class="form-status" id="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING WHATSAPP BUTTON (Nielsen 7: Flexibilidad y Aceleradores) -->
+    <a href="https://wa.me/593997309788?text=Hola%20Erick,%20vi%20tu%20portafolio%20digital%20y%20me%20gustaría%20contactarte." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Contactar por WhatsApp">
+        <span class="whatsapp-tooltip">¡Escríbeme por WhatsApp!</span>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.333 5.001l-1.416 5.165 5.285-1.385c1.464.798 3.118 1.218 4.784 1.219h.004c5.504 0 9.986-4.478 9.987-9.985 0-2.668-1.039-5.176-2.926-7.062a9.923 9.923 0 0 0-7.051-2.937zm5.83 14.288c-.247.692-1.433 1.325-1.986 1.385-.512.056-1.18.08-1.905-.152-1.464-.469-3.324-1.638-4.685-2.999-1.36-1.36-2.529-3.221-2.999-4.685-.232-.725-.208-1.393-.152-1.905.06-.553.693-1.739 1.385-1.986.233-.083.479-.083.693 0 .167.064.39.261.536.52.208.369.709 1.728.769 1.852.06.124.1.269.02.433-.08.164-.124.269-.247.412-.124.143-.261.319-.372.43-.124.124-.254.26-.11.507.143.247.637 1.052 1.368 1.702.939.835 1.731 1.094 1.978 1.218.247.124.39.103.536-.06.143-.164.617-.723.781-.97.164-.247.329-.208.553-.124.224.083 1.423.671 1.67 1.794.247.124.412.185.494.212.822.027c.329.083 1.515-.55 1.762-1.242z"/></svg>
+    </a>
+
+    <!-- NIELSEN 10 HEURISTICS MODAL -->
+    <div class="modal-overlay" id="heuristics-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 style="font-size:1.3rem; font-weight:800; color:var(--brand-blue);">Cumplimiento de los 10 Principios de Nielsen</h3>
+                <button class="close-modal" id="close-modal-btn">&times;</button>
+            </div>
+            <div>
+                <div class="heuristic-item">
+                    <h5>1. Visibilidad del estado del sistema</h5>
+                    <p>Barra superior de progreso de lectura, indicador de sección activa en la barra de navegación y estado en vivo del modo claro/oscuro.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>2. Relación entre el sistema y el mundo real</h5>
+                    <p>Lenguaje directo, claro y libre de tecnicismos innecesarios con iconografía estándar (teléfono, correo, ubicación, WhatsApp).</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>3. Control y libertad del usuario</h5>
+                    <p>Botón fácil e instantáneo para conmutar entre Light y Dark Mode, navegación libre por anclas e interactividad fluida.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>4. Consistencia y estándares</h5>
+                    <p>Paleta estandarizada de 4 colores principales (Blanco, Azul, Verde y Negro), tipografía coherente (Plus Jakarta Sans) y componentes UI uniformes.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>5. Prevención de errores</h5>
+                    <p>Enlace de WhatsApp previamente parametrizado con mensaje de cortesía prellenado y validación HTML5/JS en el formulario de contacto.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>6. Reconocimiento en lugar de recuerdo</h5>
+                    <p>Barra de navegación fija (sticky) con resaltado visual permanente de la ubicación actual del usuario.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>7. Flexibilidad y eficiencia de uso</h5>
+                    <p>Aceleradores de acceso rápido: Botón flotante de WhatsApp, botón de copia rápida de correo al portapapeles y filtros por categoría de habilidades.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>8. Diseño estético y minimalista</h5>
+                    <p>Interfaz moderna con alto nivel de contraste (WCAG AAA/AA), espaciado equilibrado y foco exclusivo en la información relevante del CV.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>9. Ayuda a reconocer y corregir errores</h5>
+                    <p>Retroalimentación visual interactiva en tiempo real al enviar el formulario de contacto.</p>
+                </div>
+                <div class="heuristic-item">
+                    <h5>10. Ayuda y documentación</h5>
+                    <p>Inclusión de esta misma guía interactiva que explica y transparente el diseño usable del sitio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container" style="padding:0;">
+            <p>© 2026 Erick Steeven Panchi Barrezueta — Portafolio Digital Creado alineado a los 10 Principios de Usabilidad de Nielsen.</p>
+            <p style="margin-top:0.4rem; font-size:0.8rem;">Escuela Politécnica Nacional (EPN) — Sangolquí / Quito, Ecuador</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // --- 1. Visibilidad del Estado: Reading Progress Bar ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // --- 1. Active Navigation Highlight (ScrollSpy) ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- 3. Light & Dark Mode Toggle ---
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeText = document.getElementById('theme-text');
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        const htmlElem = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlElem.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                htmlElem.setAttribute('data-theme', 'light');
+                themeText.textContent = 'Modo Oscuro';
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                htmlElem.setAttribute('data-theme', 'dark');
+                themeText.textContent = 'Modo Claro';
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        });
+
+        // --- 7. Flexibilidad: Copy Email to Clipboard ---
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        copyEmailBtn.addEventListener('click', () => {
+            const email = 'panchierick2005@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const originalText = copyEmailBtn.innerHTML;
+                copyEmailBtn.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    ¡Copiado!
+                `;
+                setTimeout(() => {
+                    copyEmailBtn.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+
+        // --- 7. Skill Filtering ---
+        function filterSkills(category, btn) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.skill-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 5 & 9. Form Handling & Error Prevention ---
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formStatus = document.getElementById('form-status');
+            formStatus.className = 'form-status success';
+            formStatus.style.display = 'block';
+            formStatus.textContent = '¡Gracias por su mensaje! Erick se pondrá en contacto pronto.';
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
+        }
+
+        // --- Mobile Menu Toggle ---
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navLinksMenu = document.getElementById('nav-links');
+        mobileBtn.addEventListener('click', () => {
+            navLinksMenu.classList.toggle('active');
+        });
+
+        // --- 10. Nielsen Heuristics Modal ---
+        const openModalBtn = document.getElementById('open-heuristics-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modal = document.getElementById('heuristics-modal');
+
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
